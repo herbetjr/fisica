@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<meta name="charset" content="ISO-8859-1" />
+	<title>Forca Coulombiana</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script
+	src="https://code.jquery.com/jquery-3.4.1.js"
+	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		});
+		
+	</script>
+	<section class="container-fluid">
+		<div class="row m-5 p-5 bg-white rounded">
+			<div class="col-sm-12 text-center">
+				<h3>Força Coulombiana</h3>
+				<hr>
+			</div>
+			<div class="col-sm-8 ">
+				<div class="form-row">
+					<div class="col-sm-12 cargas">
+						<div class="bg-dark rounded-circle carga1 text-white p-3" style="font-size: 14px">
+							<span style="color: white;" class="valor_carga1"></span>
+							<img id="seta-d" src="images/seta.png" class="atracao-d">
+							<img id="seta-e" src="images/seta.png" class="atracao-e" >
+							<img id="seta-d" src="images/seta.png" class="repulsao-d">
+							<img id="seta-e" src="images/seta.png" class="repulsao-e" >
+						</div>
+						<div class="bg-dark rounded-circle carga2 text-white p-3" style="font-size: 14px">
+							<span class="valor_carga2"></span>
+							<img id="seta-d" src="images/seta.png" class="atracao-d">
+							<img id="seta-e" src="images/seta.png" class="atracao-e" >
+							<img id="seta-d" src="images/seta.png" class="repulsao-d">
+							<img id="seta-e" src="images/seta.png" class="repulsao-e" >
+							
+						</div>
+					</div>
+					
+				</div>
+				
+				<div class="col-sm-12 ">
+					<div class="mx-auto" style="width:100%">
+						<input id="range" type="range" class="form-control-range" min="0" max="100" value="0">
+						<label class="float-left">0m</label>
+						<label class="float-right">100m</label>
+					</div>
+
+				</div>
+
+				<div class="col-sm-12">
+					<br><br>
+					<p class="text-center" id="resultado">
+						
+					</p>
+					<p class="text-center" id="forca">
+						
+					</p>
+				</div>
+				
+			</div>
+			<div class="col-sm-4 pl-5">
+				<p><b>Valores de Referência:</b><br> K = 9 x 10^9 N.m²/C²</p>
+				<p><b>Valores de de cargs:</b><br> -2.0C a +2.0C</p>
+				<p class="alert alert-danger "></p>
+				<p>Informe o valor e as polaridades das cargas:</p>
+				<form class="">
+					<div class="form-row">
+						<div class="col-sm-4">
+							<label><b>Carga q1 (C):</b> </label>
+						</div>
+						<div class="col-sm-3">
+							<input id="input_carga1"  type="number" step="0.01" name="" class="form-control " required>
+						</div>
+						<div class="col-sm-5">
+							<select id="polar1" class="form-control" required>
+								<option>----</option>
+								<option value="positiva">Positiva</option>
+								<option value="negativa">Negativa</option>
+							</select>
+						</div>
+
+						
+					</div>
+					<div class="form-row mt-2">
+						<div class="col-sm-4">
+							<label><b>Carga q2 (C):</b> </label>
+						</div>
+						<div class="col-sm-3">
+							<input id="input_carga2"  type="number" step="0.01" name="" class="form-control" required>
+						</div>
+						<div class="col-sm-5">
+							<select id="polar2" class="form-control" required>
+								<option>----</option>
+								<option value="positiva">Positiva</option>
+								<option value="negativa">Negativa</option>
+							</select>
+						</div>					
+						
+					</div>
+					<div class="form-row mt-2">
+						<div class="col-sm-4">
+							<label><b>Distância (m):</b> </label>
+						</div>
+						<div class="col-sm-8">
+							<input id="d" type="number" name="" class="form-control" required>
+						</div>					
+						
+					</div>
+					
+				</form>
+				<button id="calcular">Calcular</button>
+				
+			</div>
+		</div>	
+
+	</section>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#d').val(100-$('#range').val());
+			$('.alert').hide();
+			$(".atracao-d").hide();
+			$(".atracao-e").hide();
+			$(".repulsao-d").hide();
+			$(".repulsao-e").hide();
+
+			$(this).on('input', '#range', function(event) {
+				var range = $('#range').val();
+				$('#d').val(100-$('#range').val());
+				$('.carga1').css('left','+=6.5px' );
+			});
+
+			$('#d').keyup(function() {
+				$('#range').val(100-$(this).val());
+				$('.carga1').css('left','0%' );
+				$('.carga1').css('left',$('#range').val()*6.5+'px' );
+			});
+
+
+			$('#input_carga1').keyup(function() {
+				if (($(this).val() > 0.1) && ($(this).val() <= 2.0) ) {
+					$('.valor_carga1').text($(this).val());
+					$('.alert').hide('fast');
+				}else{
+					$('.valor_carga1').text('');
+					$('.alert').show('fast', function() {
+						$('.alert').text("Valores das cargas deve ser entre -2.0 e +2.0");
+					});
+					
+				};
+			});
+
+			$('#input_carga2').keyup(function() {
+				if (($(this).val() > 0.1) && ($(this).val() <= 2.0) ) {
+					$('.valor_carga2').text($(this).val());
+					$('.alert').hide('fast');
+				}else{
+					$('.valor_carga2').text('');
+					$('.alert').show('fast', function() {
+						$('.alert').text("Valores das cargas deve ser entre -2.0 e +2.0");
+					});
+					
+				};
+			});
+
+			$('#polar1').change(function() {
+				if ($(this).val() == "positiva") {
+					$('.valor_carga1').text('+'+$('#input_carga1').val()+'C');
+				}else if ($(this).val() == "negativa") {
+					$('.valor_carga1').text('-'+$('#input_carga1').val()+'C');
+				};
+				
+			});
+
+			$('#polar2').change(function() {
+				if ($(this).val() == "positiva") {
+					$('.valor_carga2').text('+'+$('#input_carga2').val()+'C');
+				}else if ($(this).val() == "negativa") {
+					$('.valor_carga2').text('-'+$('#input_carga2').val()+'C');
+				};
+				
+			});
+
+			function formula(q1,q2,d){
+				var f = 0;
+				var k = 9;
+
+				f = (k * q1 * q2) / (Math.pow(d,2));
+
+
+				return f*1000;
+			}
+
+			$('#calcular').click(function() {
+				var d = $('#d').val();
+				if ($('#polar1').val() == "negativa") {
+					var q1 = $('#input_carga1').val() *-1;
+				}else{
+					var q1 = $('#input_carga1').val();
+				};
+				if ($('#polar2').val() == "negativa") {
+					var q2 = $('#input_carga2').val() *-1;
+				}else{
+					var q2 = $('#input_carga2').val();
+				};				
+				
+
+				var r =formula(q1,q2,d);
+
+				var result = parseFloat(r.toFixed(2));
+
+				$('#resultado').html('<h4>A força resultante é:</h4><br><h3>'+result+' x 10^6 N</h3>');
+
+				if (result > 0) {
+					$(".repulsao-d").show();
+					$(".repulsao-e").show();
+					$(".atracao-d").hide();
+					$(".atracao-e").hide();
+					$('#forca').html("<h4> Há repulsão entre as cargas</h4>");
+
+				}else if(result < 0){
+
+					$(".repulsao-d").hide();
+					$(".repulsao-e").hide();
+					$(".atracao-d").show();
+					$(".atracao-e").show();
+					$('#forca').html("<h4> Há atração entre as cargas</h4>");
+				};
+
+
+			});
+
+		});
+	</script>
+
+</body>
+</html>

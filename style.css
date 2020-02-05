@@ -1,0 +1,82 @@
+body{
+	background-image: url(images/fundo.jpg);]
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.cargas{
+	height: 100px;
+}
+
+.carga1{
+	width: 75px;
+	height: 75px;
+	left:0%;
+	position: absolute;
+	animation-name: flutar;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+.carga2{
+	width: 75px;
+	height: 75px;
+	position: absolute;
+	right: 0px;
+	animation-name: flutar2;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-delay: 0.1s;
+}
+
+.repulsao-d{
+	width: 40px;
+	position: absolute;
+	top: 15px;
+	left: 75px;
+}
+.repulsao-e{
+	width: 40px;
+	position: absolute;
+	top: 15px;
+	right: 75px;
+	 transform: scaleX(-1);
+}
+.atracao-d{
+	width: 40px;
+	position: absolute;
+	top: 15px;
+	left: 75px;
+	 transform: scaleX(-1);
+}
+.atracao-e{
+	width: 40px;
+	position: absolute;
+	top: 15px;
+	right: 75px;
+}
+
+
+@keyframes flutar {
+	0% {
+		top:0px;
+	}
+
+	50% {
+		top:5px;
+	}
+	100% {
+		top:0px;
+	}
+}
+@keyframes flutar2 {
+	0% {
+		top:0px;
+	}
+
+	50% {
+		top:5px;
+	}
+	100% {
+		top:0px;
+	}
+}
